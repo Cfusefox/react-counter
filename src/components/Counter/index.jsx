@@ -7,8 +7,6 @@ class Counter extends React.Component {
             number: 0,
             input: this.props.getCount()
         }
-        this.reduce = this.reduce.bind(this)
-        this.add = this.add.bind(this)
     }
 
     componentWillReceiveProps() {
@@ -20,12 +18,12 @@ class Counter extends React.Component {
         return null
     }
 
-    reduce() {
+    reduce = () => {
         this.setState((prevState) => ({number: this.state.number--}))
         this.props.store.dispatch({ type: 'REDUCE' })
     }
 
-    add() {
+    add = () => {
         this.setState((prevState) => ({number: this.state.number++}))
         this.props.store.dispatch({ type: 'ADD' })
     }

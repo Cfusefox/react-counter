@@ -7,8 +7,7 @@ class CounterGroup extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            count: 0,
-            total: 0
+            count: 0
         }
     }
 
@@ -19,16 +18,9 @@ class CounterGroup extends React.Component {
         }) : this.setState({
             count: 0
         })
-        /* this.setState({total: 0}) */
         this.props.store.dispatch({ type: 'EMPTY' })
     }
 
-    setTotal = (value) => {
-        this.setState({
-            total: this.state.total + value
-        })
-    }
-    
     getCount = () =>{
         return this.state.count
     }

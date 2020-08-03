@@ -1,7 +1,5 @@
 
-
 export default (state = 0, action) => {
-    console.log(state)
     switch(action.type){
         case "ADD":
             return state + 1
