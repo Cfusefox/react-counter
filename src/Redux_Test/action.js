@@ -7,3 +7,7 @@ export const reduce = () => {
 export const empty = () => {
   type: "EMPTY"
 }
+export const change = (data) => ({
+  type: "CHANGE",
+  data: data
+})

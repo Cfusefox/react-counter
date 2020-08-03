@@ -6,32 +6,21 @@ class CounterGroup extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            count: 0
-        }
     }
 
     inputChange = (event) => {
-        event.target.value !== ''? 
-        this.setState({
-            count: parseInt(event.target.value)
-        }) : this.setState({
-            count: 0
-        })
+        event.target.value !== '' ?
+            store.dispatch({ type: "CHANGE", data: parseInt(event.target.value) })
+            : store.dispatch({ type: "CHANGE", data: 0 })
         store.dispatch({ type: 'EMPTY' })
     }
 
-    getCount = () =>{
-        return this.state.count
-    }
 
     render() {
-        return  <div>
-            <span>Number of Counters: </span><input type="text" value={this.state.count} onChange={this.inputChange}></input><br/>
-            <span>total: </span>{ store.getState().total }
-            {new Array(this.state.count).fill().map((item, index) => <Counter key={index} 
-                                                                    getCount={this.getCount}
-                                                                    />)}
+        return <div>
+            <span>Number of Counters: </span><input type="text" value={store.getState().input} onChange={this.inputChange} ></input><br />
+            <span>total: </span>{store.getState().total}
+            {new Array(store.getState().input).fill().map((item, index) => <Counter key={index} />)}
         </div>
     }
 

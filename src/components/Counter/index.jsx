@@ -6,36 +6,35 @@ class Counter extends React.Component {
         super(props);
         this.state = {
             number: 0,
-            input: this.props.getCount()
+            input: store.getState().input
         }
-    }
-
-    componentWillReceiveProps() {
-        if(this.state.input !== this.props.getCount()) {
-            this.setState({
-                number: 0,
-                input: this.props.getCount})
-        }
-        return null
+        store.subscribe(() => {
+            if (this.state.input !== store.getState().input) {
+                this.setState({
+                    number: 0,
+                    input: store.getState().input
+                })
+            }
+        })
     }
 
     reduce = () => {
-        this.setState((prevState) => ({number: this.state.number--}))
+        this.setState((prevState) => ({ number: this.state.number-- }))
         store.dispatch({ type: 'REDUCE' })
     }
 
     add = () => {
-        this.setState((prevState) => ({number: this.state.number++}))
+        this.setState((prevState) => ({ number: this.state.number++ }))
         store.dispatch({ type: 'ADD' })
     }
 
     render() {
         return <div className="counter">
-          <button onClick={this.reduce}>-</button>
-          <mark>{this.state.number}</mark>
-          <button onClick={this.add}>+</button>
+            <button onClick = {this.reduce}>-</button>
+            <mark>{this.state.number}</mark>
+            <button onClick = { this.add }>+</button>
         </div>
     }
-
 }
+
 export default Counter;
