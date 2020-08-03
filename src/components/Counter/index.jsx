@@ -12,7 +12,7 @@ class Counter extends React.Component {
     }
 
     componentWillReceiveProps() {
-        if(this.state.input != this.props.getCount()) {
+        if(this.state.input !== this.props.getCount()) {
             this.setState({
                 number: 0,
                 input: this.props.getCount})
@@ -22,16 +22,14 @@ class Counter extends React.Component {
 
     reduce() {
         this.setState((prevState) => ({number: this.state.number--}))
-        this.props.setTotal(-1);
+        /* this.props.setTotal(-1); */
+        this.props.onDecrement()
     }
 
     add() {
         this.setState((prevState) => ({number: this.state.number++}))
-        this.props.setTotal(1);
-    }
-
-    destroy = () => {
-        this.setState({number: 0})
+        /* this.props.setTotal(1); */
+        this.props.onIncrement()
     }
 
     render() {
@@ -39,7 +37,6 @@ class Counter extends React.Component {
           <button onClick={this.reduce}>-</button>
           <mark>{this.state.number}</mark>
           <button onClick={this.add}>+</button>
-          <button onClick={this.destroy}>归零</button>
         </div>
     }
 
