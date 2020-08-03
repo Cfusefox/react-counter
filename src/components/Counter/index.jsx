@@ -22,14 +22,12 @@ class Counter extends React.Component {
 
     reduce() {
         this.setState((prevState) => ({number: this.state.number--}))
-        /* this.props.setTotal(-1); */
-        this.props.onDecrement()
+        this.props.store.dispatch({ type: 'REDUCE' })
     }
 
     add() {
         this.setState((prevState) => ({number: this.state.number++}))
-        /* this.props.setTotal(1); */
-        this.props.onIncrement()
+        this.props.store.dispatch({ type: 'ADD' })
     }
 
     render() {

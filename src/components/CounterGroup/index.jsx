@@ -33,23 +33,13 @@ class CounterGroup extends React.Component {
         return this.state.count
     }
 
-    add = () => {
-        this.props.store.dispatch({ type: 'ADD' })
-    }
-
-    reduce = () => {
-        this.props.store.dispatch({ type: 'REDUCE' })
-    }
-
     render() {
         return  <div>
             <span>Number of Counters: </span><input type="text" value={this.state.count} onChange={this.inputChange}></input><br/>
             <span>total: </span>{ this.props.store.getState() }
             {new Array(this.state.count).fill().map((item, index) => <Counter key={index} 
-                                                                    setTotal={this.setTotal} 
                                                                     getCount={this.getCount}
-                                                                    onIncrement={this.add}
-                                                                    onDecrement={this.reduce}/>)}
+                                                                    store={this.props.store}/>)}
         </div>
     }
 
