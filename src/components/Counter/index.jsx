@@ -1,4 +1,5 @@
 import React from 'react'
+import store from '../../Redux_Test/store'
 
 class Counter extends React.Component {
     constructor(props) {
@@ -20,12 +21,12 @@ class Counter extends React.Component {
 
     reduce = () => {
         this.setState((prevState) => ({number: this.state.number--}))
-        this.props.store.dispatch({ type: 'REDUCE' })
+        store.dispatch({ type: 'REDUCE' })
     }
 
     add = () => {
         this.setState((prevState) => ({number: this.state.number++}))
-        this.props.store.dispatch({ type: 'ADD' })
+        store.dispatch({ type: 'ADD' })
     }
 
     render() {

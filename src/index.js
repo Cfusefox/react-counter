@@ -7,7 +7,7 @@ import store from './Redux_Test/store'
 
 const render = () => ReactDOM.render(
   <React.StrictMode>
-    <App store = { store }/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

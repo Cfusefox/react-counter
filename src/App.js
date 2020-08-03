@@ -2,15 +2,12 @@ import React from 'react';
 import './App.css';
 import CounterGroup from './components/CounterGroup/index'
 import store from './Redux_Test/store'
-import {Provider} from "react-redux";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <CounterGroup
-        store = { store }
-        />
+        <CounterGroup/>
       </header>
     </div>
   );
