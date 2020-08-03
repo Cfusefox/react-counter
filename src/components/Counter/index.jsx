@@ -33,10 +33,12 @@ class Counter extends React.Component {
 
     reduce() {
         this.setState((prevState) => ({number: this.state.number--}))
+        this.props.setTotal(-1);
     }
 
     add() {
         this.setState((prevState) => ({number: this.state.number++}))
+        this.props.setTotal(1);
     }
 
     destroy = () => {
