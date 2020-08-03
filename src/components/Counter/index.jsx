@@ -4,31 +4,20 @@ class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 0
+            number: 0,
+            input: this.props.getCount()
         }
         this.reduce = this.reduce.bind(this)
         this.add = this.add.bind(this)
-        console.log(`-----constructor`)
     }
 
-    componentWillMount() {
-        console.log(`-----will mount`)
-    }
-
-    componentDidMount() {
-        console.log(`------did mount`)
-    }
-
-    componentWillUnmount() {
-        console.log(`------will unmount`)
-    }
-
-    componentWillUpdate() {
-        console.log(`----will update`)
-    }
-
-    componentDidUpdate() {
-        console.log(`-----update now`)
+    componentWillReceiveProps() {
+        if(this.state.input != this.props.getCount()) {
+            this.setState({
+                number: 0,
+                input: this.props.getCount})
+        }
+        return null
     }
 
     reduce() {
