@@ -1,31 +1,32 @@
 import React from 'react'
-import store from '../../Redux_Test/store'
+import store from '../../store/index'
 
 class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             number: 0,
-            input: store.getState().input
+            input: this.props.prop.input
         }
-        store.subscribe(() => {
-            if (this.state.input !== store.getState().input) {
-                this.setState({
-                    number: 0,
-                    input: store.getState().input
-                })
-            }
-        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.prop.input !== this.state.input) {
+            this.setState({
+                number: 0,
+                input: nextProps.prop.input
+            })
+        }
     }
 
     reduce = () => {
-        this.setState((prevState) => ({ number: this.state.number-- }))
-        store.dispatch({ type: 'REDUCE' })
+        this.setState({ number: --this.state.number })
+        this.props.prop.reduce()
     }
 
     add = () => {
-        this.setState((prevState) => ({ number: this.state.number++ }))
-        store.dispatch({ type: 'ADD' })
+        this.setState({ number: ++this.state.number })
+        this.props.prop.add()
     }
 
     render() {

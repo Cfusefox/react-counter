@@ -1,6 +1,5 @@
 import React from 'react'
 import Counter from '../Counter/index'
-import store from '../../Redux_Test/store'
 
 class CounterGroup extends React.Component {
 
@@ -10,17 +9,17 @@ class CounterGroup extends React.Component {
 
     inputChange = (event) => {
         event.target.value !== '' ?
-            store.dispatch({ type: "CHANGE", data: parseInt(event.target.value) })
-            : store.dispatch({ type: "CHANGE", data: 0 })
-        store.dispatch({ type: 'EMPTY' })
+            this.props.change(parseInt(event.target.value))
+            : this.props.change(0)
+        this.props.empty()
     }
 
 
     render() {
         return <div>
-            <span>Number of Counters: </span><input type="text" value={store.getState().input} onChange={this.inputChange} ></input><br />
-            <span>total: </span>{store.getState().total}
-            {new Array(store.getState().input).fill().map((item, index) => <Counter key={index} />)}
+            <span>Number of Counters: </span><input type="text" value={this.props.input} onChange={this.inputChange} ></input><br />
+            <span>total: </span>{this.props.total}
+            {new Array(this.props.input).fill().map((item, index) => <Counter key={index} prop={this.props}/>)}
         </div>
     }
 
